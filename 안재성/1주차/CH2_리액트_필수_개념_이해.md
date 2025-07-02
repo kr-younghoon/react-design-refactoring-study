@@ -23,7 +23,7 @@
 - 컴포넌트에 비즈니스 로직이 있는 경우
 - 서로 독립적인 상태가 한곳에 있는 경우 (하나의 상태값 변경이 다른 상태까지 렌더링 시키는 경우)
 
-[구성요소를 분리하는 기준과 방법](https://medium.com/@junep/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EB%A5%BC-%EB%B6%84%EB%A6%AC%ED%95%98%EB%8A%94-%EA%B8%B0%EC%A4%80%EA%B3%BC-%EB%B0%A9%EB%B2%95-e7cf16bb157a)
+참고자료 - [구성요소를 분리하는 기준과 방법](https://medium.com/@junep/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EB%A5%BC-%EB%B6%84%EB%A6%AC%ED%95%98%EB%8A%94-%EA%B8%B0%EC%A4%80%EA%B3%BC-%EB%B0%A9%EB%B2%95-e7cf16bb157a)
 
 ## 2.5 렌더링 과정 이해하기
 
@@ -37,7 +37,7 @@
 
 ##### :bulb: 브라우저의 렌더링 과정
 
-[MDN-브라우저는 어떻게 동작하는가](https://developer.mozilla.org/ko/docs/Web/Performance/Guides/How_browsers_work)
+참고자료 - [MDN-브라우저는 어떻게 동작하는가](https://developer.mozilla.org/ko/docs/Web/Performance/Guides/How_browsers_work)
 
 ## 2.6 많이 사용되는 리액트 훅
 
@@ -101,7 +101,7 @@ React는 가상 돔이라는 자신만의 돔 이미지를 유지하고 있으�
 
 이러한 변경점을 찾고 실제 돔을 업데이트하는 과정을 동기적으로 진행한다면 렌더링 작업이 오래 걸린다면 메인 스레드가 차단되고 프레임 드롭이나 응답 지연이 발생하기 때문에 UX를 저해하는 요소가 된다.
 
-[콘솔로그가 이상한건 setState가 비동기 함수여서가 아닙니다.](https://velog.io/@jay/setStateisnotasync)
+참고자료 - [콘솔로그가 이상한건 setState가 비동기 함수여서가 아닙니다.](https://velog.io/@jay/setStateisnotasync)
 
 #### :bulb: useState는 어떻게 최신 상태 값을 유지할 수 있을까
 
@@ -128,7 +128,7 @@ function useState(initVal) {
 - 최상위에서만 호출해야한다: 반복문, 조건문 혹은 중첩 함수 내에서 Hook을 호출할 수 없다. (조건에 따라 hook 실행 여부가 달라지면 컴포넌트가 렌더링 될 때마다 hook의 실행 순서가 달라짐)
 - 오직 React 함수 내에서 호출해야 한다: React의 함수 컴포넌트 혹은 커스텀 훅 내부에서 Hook을 호출해야 한다. (컴포넌트의 렌더링 사이클과 관계없이 호출될 수 있음)
 
-[useState 동작 원리와 클로저](https://jaehan.blog/posts/react/useState-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC%EC%99%80-%ED%81%B4%EB%A1%9C%EC%A0%80)
+참고자료 - [useState 동작 원리와 클로저](https://jaehan.blog/posts/react/useState-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC%EC%99%80-%ED%81%B4%EB%A1%9C%EC%A0%80)
 
 ### 2.6.2 useEffect
 
