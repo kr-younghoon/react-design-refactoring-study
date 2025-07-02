@@ -85,6 +85,7 @@ startTransition은 인자로 상태를 업데이트하는 함수를 전달받아
 **참고**
 
 https://react.dev/reference/react/useTransition#displaying-an-error-to-users-with-error-boundary
+
 +) chatGPT
 
 ## 1.4 안티패턴 종류
@@ -95,7 +96,9 @@ prop이 부모 컴포넌트에서 자식 컴포넌트로 전달될 때 여러개
 
 <details>
 <summary>책에 있는 예제 코드</summary>
+	
 <div markdown="1">       
+	
 ```jsx
 type Item = { id: string; name: string };
 
@@ -147,7 +150,8 @@ return (
 
 export default SearchableList;
 
-````
+```
+
 </div>
 </details>
 
