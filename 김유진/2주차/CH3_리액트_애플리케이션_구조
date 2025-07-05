@@ -1,0 +1,193 @@
+# 코드 스멜과 기술 부채
+
+##  코드 스멜(Code Smell)
+
+겉으로 보기에는 작동하지만, 구조적으로 문제가 있어 보이는 코드
+
+- 예시
+  - 너무 많은 역할을 하는 함수나 클래스
+  - 중복 코드
+  - 의미 없는 변수명
+  - 너무 긴 함수
+  - 조건문이 너무 많거나 복잡한 경우
+
+## 기술 부채(Technical Debt)
+
+지금 당장 빠르게 개발하기 위해 미래의 품질과 유지보수를 희생하는 선택
+
+---
+
+## 1. 구조화되지 않은 프로젝트의 문제점
+
+- 코드베이스를 효과적으로 관리하고 유지보수가 어려움
+
+###  발생할 수 있는 문제들
+
+- 무질서한 코드
+- 낮은 코드 재사용성
+- 협업의 어려움
+- 확장성 문제
+- 복잡한 유지보수 문제
+
+---
+
+## 2. 프런트엔드 애플리케이션의 복잡함에 대한 이해
+
+###  중간 규모 프로젝트의 코드베이스 구성요소
+
+- 소스코드 : 애플리케이션의 로직을 담고 있는 파일
+- 에셋 : 이미지, 폰트 등
+- 설정 : `package.json`, 환경변수 파일 등
+- 테스트 : 테스트 코드
+- 문서 : `README.md`, API 문서 등
+- 빌드 결과물 : 번들링된 파일
+- 개발 도구 및 설정파일 : 자동화된 테스팅과 배포절차를 위한 도구
+
+>  이름을 짓고 구조화할 때는 일관성이 가장 중요함
+
+---
+
+## 3. 일반적인 리액트 애플리케이션 구조
+
+### 1) 기능 기반 구조 (Feature-Based)
+
+- 기능과 모듈 중심으로 구조화
+- 예: `pages/login`, `pages/signup`, `features/chat`
+
+#### 장점
+
+- 명확한 관심사 분리
+- 모듈화
+- 확장성
+- 팀 협업에 유리
+
+#### 단점
+
+- 코드 중복의 가능성
+
+---
+
+### 2) 컴포넌트 기반 구조 (Component-Based)
+
+- 재사용 가능한 컴포넌트 단위로 구조화
+- 예: `components/Button`, `components/Card`
+
+#### 장점
+
+- 모듈화
+- 관심사 분리
+- 높은 코드 재사용성
+
+#### 단점
+
+- 프로젝트 복잡도 증가
+- 진입장벽 상승
+- 코드 중복의 가능성
+
+---
+
+### 3) 아토믹 디자인 구조 (Atomic Design)
+
+> 참고: [Atomic Design Pattern 적용기 (velog)](https://velog.io/@younyikim/Atomic-Design-Pattern과-컴포넌트-단위-개발-방식-적용기-장점과-단점)
+
+#### 분류
+
+- 원자(Atom)  
+  가장 작은 단위  
+  예: `Button`, `Input`, `Label`
+
+- 분자(Molecule)  
+  원자들의 조합  
+  예: `SearchForm` (Input + Button + Label)
+
+- 유기체(Organism)  
+  여러 분자와 원자들이 모인 독립적 영역  
+  예: `Header`, `Footer`, `PostList`
+
+- 템플릿(Template)  
+  구조 배치만 담당  
+  예:
+
+  ```tsx
+  export const MainLayout = ({ header, content, footer }) => (
+    <div>
+      {header}
+      <main>{content}</main>
+      {footer}
+    </div>
+  )
+
+## 페이지 (Page)
+
+모든 단위를 결합하여 실제 콘텐츠를 포함한 **최종 화면**
+
+### 장점
+- 재사용성
+- 일관성
+- 확장성
+- 유지보수 용이
+- 협업에 유리
+
+### 단점
+- 높은 진입장벽
+- 복잡도 증가
+- 오버 엔지니어링 가능성
+
+---
+
+##  MVVM 패턴
+
+> **Model - View - ViewModel**  
+> 복잡한 상태와 비즈니스 로직을 명확히 분리하는 패턴
+
+### Model
+- 데이터를 가져오고 저장하는 로직
+- 예: 서버 API 요청, 데이터베이스 액세스 등
+
+```tsx
+// UserModel.ts
+export const getUserCount = () =>
+  fetch('/api/users').then(res => res.json())
+
+###  ViewModel
+- 상태를 관리하고 비즈니스 로직 처리
+
+- View에서 발생한 이벤트를 받아 적절한 로직 수행
+
+```tsx
+// UserViewModel.ts
+import { useState, useEffect } from 'react'
+import { getUserCount } from './UserModel'
+
+export const useUserViewModel = () => {
+  const [userCount, setUserCount] = useState(0)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    getUserCount().then(data => {
+      setUserCount(data.length)
+      setLoading(false)
+    })
+  }, [])
+
+  return { userCount, loading }
+}
+
+### veiw
+
+- 화면 출력과 사용자 인터랙션 처리
+
+- ViewModel에서 전달받은 상태를 화면에 반영
+
+``` tsx
+// UserView.tsx
+import { useUserViewModel } from './UserViewModel'
+
+const UserView = () => {
+  const { userCount, loading } = useUserViewModel()
+
+  return (
+    <div>
+      {loading ? '로딩 중...' : `현재 회원 수는 ${userCount}명입니다.`}
+    </div>
+  )}
