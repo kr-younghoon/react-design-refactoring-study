@@ -116,6 +116,7 @@
       {footer}
     </div>
   )
+  ```
 
 ## 페이지 (Page)
 
@@ -148,6 +149,7 @@
 // UserModel.ts
 export const getUserCount = () =>
   fetch('/api/users').then(res => res.json())
+```
 
 ###  ViewModel
 - 상태를 관리하고 비즈니스 로직 처리
@@ -172,6 +174,7 @@ export const useUserViewModel = () => {
 
   return { userCount, loading }
 }
+```
 
 ### veiw
 
@@ -191,3 +194,4 @@ const UserView = () => {
       {loading ? '로딩 중...' : `현재 회원 수는 ${userCount}명입니다.`}
     </div>
   )}
+  ```
