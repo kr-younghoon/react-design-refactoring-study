@@ -100,7 +100,7 @@ class ErrorBoundary extends React.Component {
 - 비동기 코드 내부의 에러
 - 서버사이드 렌더링 중의 에러
 
-:bulb: 이 방식은 왜 에러 바운더리 역할을 하지 못할까?
+#### :bulb: 이 방식은 왜 에러 바운더리 역할을 하지 못할까?
 
 ```javascript
 function ProblemComponent() {
