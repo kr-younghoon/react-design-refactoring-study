@@ -162,7 +162,7 @@ export function PizzShopApp() {
 }
 
 // 이러한 방식은 코드가 언제든지 배포 가능한 상태를 유지한다는 장점이 있다.
-// 리팩토링 해기
+// 리팩토링 하기
 
 export function PizzaShopApp() {
   return <>
